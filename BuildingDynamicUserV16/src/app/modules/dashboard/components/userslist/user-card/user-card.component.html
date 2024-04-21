@@ -1,0 +1,26 @@
+<div class="card border-secondary">
+  <div class="card-header text-secondary fw-bold">
+    Name: {{user.first_name}} {{user.last_name}}
+
+  </div>
+
+  <div class="card-body">
+    <div class="row ">
+      <div class="col-lg-4 col-sm-12">
+        <img class="img-fluid" [src]="user.avatar">
+      </div>
+      <div class="col-lg-8 col-sm-12">
+        <p class=" mb-0">
+          <span class="fw-bold"> id:</span> {{user.id}}
+        </p>
+        <p class=" mb-0"> <span class="fw-bold"> email:</span>{{user.email}}</p>
+        <p class=" mb-0 "> <span class="fw-bold"> first nmae :</span> {{user.first_name}}</p>
+        <p class="mb-0 "> <span class="fw-bold"> last name :</span> {{user.last_name}}</p>
+        <a class="link" (click)="gotoDetails(user.id)"> more Details</a>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

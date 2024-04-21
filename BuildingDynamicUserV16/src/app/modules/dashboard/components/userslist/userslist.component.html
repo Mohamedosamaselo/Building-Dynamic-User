@@ -1,0 +1,67 @@
+ <ng-container *ngIf="!isLoading">
+ 
+<div class="row d-flex justify-content-between align-items-center my-2">
+  <h2 class=" col-md-6 col-sm-12 my-4">users list </h2>
+  <div class="col-md-4 col-sm-12">
+    <label> Search by user id </label>
+
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Search" (keydown.enter)="search()" (keyup)="search()"
+        [(ngModel)]='searchKey'>
+      <button class="btn btn-success" type="submit" (click)="clearSearch()">clear</button>
+    </div>
+
+  </div>
+
+</div>
+<div class="col-12">
+
+
+  <div class="usersList" *ngIf="usersList && !searchUser">
+
+
+    <div class="row">
+      <div class="col-lg-3  col-md-6 col-sm-12 day-forecast card-deck mb-3 " *ngFor="let user of usersList ">
+        <app-user-card [user]="user" (selectedID)="gotoDetails($event)"></app-user-card>
+      </div>
+
+    </div>
+
+    <div class="my-2">
+      <ngb-pagination [collectionSize]="12" [(page)]="page" [pageSize]="6" [maxSize]="6"
+        (pageChange)="onPageChaged($event)">
+      </ngb-pagination>
+    </div>
+
+  </div>
+
+
+
+  <div class="card border-secondary" *ngIf="searchUser">
+    <div class="card-header text-secondary fw-bold">
+      Name: {{searchUser.first_name}} {{searchUser.last_name}}
+    </div>
+
+    <div class="card-body">
+      <div class="row ">
+        <div class="col-lg-4 col-sm-12">
+          <img class="img-fluid" [src]="searchUser.avatar">
+        </div>
+        <div class="col-lg-8 col-sm-12">
+          <p class=" mb-0">
+            <span class="fw-bold"> id:</span> {{searchUser.id}}
+          </p>
+          <p class=" mb-0"> <span class="fw-bold"> email:</span>{{searchUser.email}}</p>
+          <p class=" mb-0 "> <span class="fw-bold"> first nmae :</span> {{searchUser.first_name}}</p>
+          <p class="mb-0 "> <span class="fw-bold"> last name :</span> {{searchUser.last_name}}</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</ng-container>
+<ng-container *ngIf="isLoading">
+  <span>Loading...</span>
+</ng-container>
